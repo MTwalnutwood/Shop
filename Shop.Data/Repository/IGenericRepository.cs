@@ -1,5 +1,3 @@
-using System.Linq.Expressions;
-
 namespace Shop.Data.Repository;
 
 public interface IGenericRepository<T> where T : class

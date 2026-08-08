@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using Shop.Data.Persistence;
 
 namespace Shop.Data.Repository;
@@ -13,19 +12,15 @@ public class GenericRepository<T> : IGenericRepository<T>
         _context = context;
     }
 
-
     public IEnumerable<T> GetAll()
     {
         return _context.Set<T>().ToList();
     }
 
-
     public T? GetById(int id)
     {
-        return _context.Set<T>()
-            .Find(id);
+        return _context.Set<T>().Find(id);
     }
-
 
     public void Add(T entity)
     {
@@ -33,13 +28,11 @@ public class GenericRepository<T> : IGenericRepository<T>
         _context.SaveChanges();
     }
 
-
     public void Update(T entity)
     {
         _context.Set<T>().Update(entity);
         _context.SaveChanges();
     }
-
 
     public void Delete(T entity)
     {
