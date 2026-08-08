@@ -3,42 +3,42 @@ using Shop.Entities.Entities;
 
 namespace Shop.Services.Services;
 
-public class ProductService : IProductService
+public class ProductTypeService : IProductTypeService
 {
-    private readonly IGenericRepository<Product> _repository;
+    private readonly IGenericRepository<ProductType> _repository;
 
-    public ProductService(IGenericRepository<Product> repository)
+    public ProductTypeService(IGenericRepository<ProductType> repository)
     {
         _repository = repository;
     }
 
-    public List<Product> GetAll()
+    public List<ProductType> GetAll()
     {
         return _repository.GetAll().ToList();
     }
 
-    public Product? GetById(int id)
+    public ProductType? GetById(int id)
     {
         return _repository.GetById(id);
     }
 
-    public void Insert(Product product)
+    public void Insert(ProductType productType)
     {
-        _repository.Add(product);
+        _repository.Add(productType);
     }
 
-    public void Update(Product product)
+    public void Update(ProductType productType)
     {
-        _repository.Update(product);
+        _repository.Update(productType);
     }
 
     public void Delete(int id)
     {
-        Product? product = _repository.GetById(id);
+        var productType = _repository.GetById(id);
 
-        if (product != null)
+        if (productType != null)
         {
-            _repository.Delete(product);
+            _repository.Delete(productType);
         }
     }
 }
