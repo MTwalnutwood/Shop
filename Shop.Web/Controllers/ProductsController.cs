@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -56,7 +60,34 @@ public class ProductsController : Controller
 
         return View();
     }
+    [HttpPost]
+    public async Task<IActionResult> AddProductType([FromBody] string name)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            return Json(new
+            {
+                success = false,
+                message = "Product Type name is required."
+            });
+        }
 
+        var productType = new ProductType
+        {
+            Name = name
+        };
+
+        _context.ProductTypes.Add(productType);
+
+        await _context.SaveChangesAsync();
+
+        return Json(new
+        {
+            success = true,
+            id = productType.Id,
+            name = productType.Name
+        });
+    }
     // POST: Products/Create
     [HttpPost]
     [ValidateAntiForgeryToken]

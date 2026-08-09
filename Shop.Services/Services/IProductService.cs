@@ -2,15 +2,15 @@ using Shop.Entities.Entities;
 
 namespace Shop.Services.Services;
 
-public interface IProductTypeService
+public interface IProductService
 {
-    List<ProductType> GetAll();
+    List<Product> GetAll();
 
-    ProductType? GetById(int id);
+    Product? GetById(int id);
 
-    void Insert(ProductType productType);
+    void Insert(Product product);
 
-    void Update(ProductType productType);
+    void Update(Product product);
 
     void Delete(int id);
 }

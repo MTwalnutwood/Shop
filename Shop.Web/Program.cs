@@ -15,6 +15,7 @@ builder.Services.AddDbContext<ShopDbContext>(options =>
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
 builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IProductTypeService, ProductTypeService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
